@@ -1,21 +1,35 @@
-import React from "react"
-import { Link } from "gatsby"
-
+import React, { useState } from "react"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+import QuoteList from '../components/quoteList'
+import EventList from '../components/eventList'
+import PersonList from '../components/personList'
+
+import books from '../data/booknotes.json'
+const IndexPage = () => {
+  const [book, setBook] = useState(books.IBMHolocaust)
+  return (
+    <>
+      <Layout>
+        <SEO title="Home" />
+
+        <div>
+          <h2>{book.title}</h2>
+          <p>Author: {book.author}</p>
+          <p>Date Published: {book.datePublished}</p>
+          <p>Format: {book.format}</p>
+        </div>
+        <h3>Notable Quotes</h3>
+        <QuoteList quotes={book.quotes} />
+        <h3>Notable Events</h3>
+        <EventList events={book.timeline} />
+        <h3>Notable People</h3>
+        <PersonList people={book.people} />
+      </Layout >
+
+    </>
+  )
+}
 
 export default IndexPage

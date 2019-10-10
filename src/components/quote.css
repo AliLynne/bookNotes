@@ -1,0 +1,8 @@
+.quote {
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.quote__detail {
+  margin-left: 3rem;
+}
